@@ -4,17 +4,18 @@ from tool_class import tool_class
 import os
 
 """ database directory """
-tool_dir = os.path.dirname(__file__)
+tool_dir = os.path.dirname(os.path.realpath(__file__))
 db_folder = os.path.join(tool_dir, "database")
 if not os.path.isdir(db_folder):
     os.mkdir(db_folder)
 database = os.path.join(db_folder, "repos.txt")
-
+print(database)
 try:
     repo_list = open(database).read().split("\n")
     repo_list = list(filter(None, repo_list))
 except:
     repo_list = []
+
 def tool_setup():
     t = tool_class.tool(name='Repo Manager')
     # description
@@ -50,7 +51,7 @@ def add_repo(t):
     cwd = os.getcwd()
     t.msg("Appending "+cwd)
     repo_list.append(cwd)
-    f = open(list_f,"w")
+    f = open(database,"w")
     f.write("\n".join(repo_list))
     f.close()
 
@@ -58,7 +59,7 @@ def rem_repo(t):
     cwd = os.getcwd()
     t.msg("Removing "+cwd)
     repo_list.remove(cwd)
-    f = open(list_f,"w")
+    f = open(database,"w")
     f.write("\n".join(repo_list))
     f.close()
 
