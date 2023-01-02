@@ -63,6 +63,15 @@ def rem_repo(t):
     f.write("\n".join(repo_list))
     f.close()
 
+def list_repos(t):
+    if len(repo_list) == 0:
+        t.msg("No repos to pull in database")
+        t.msg("Aborting...")
+        exit()
+    t.msg("the following Repos are managed:")
+    for item in repo_list:
+        t.msg(item)
+
 def run(t):
     if t.args.action == "pull":
         pull_repos(t)
@@ -70,6 +79,8 @@ def run(t):
         add_repo(t)
     elif t.args.action == "rm":
         rem_repo(t)
+    elif t.args.action == "list":
+        list_repos(t)
     else:
         t.msg("Unknown action, aborting...")
         exit()
