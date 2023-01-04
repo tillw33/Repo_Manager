@@ -50,6 +50,10 @@ def pull_repos(t):
 def add_repo(t):
     cwd = os.getcwd()
     t.msg("Appending "+cwd)
+    if cwd in repo_list: # avoid duplicates
+        t.msg("Repo already added!")
+        t.msg("Aborting...")
+        exit()
     repo_list.append(cwd)
     f = open(database,"w")
     f.write("\n".join(repo_list))
