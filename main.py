@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from tool_class import tool_class
+from modules import tool 
 import os
 
 """ database directory """
@@ -17,7 +17,7 @@ except:
     repo_list = []
 
 def tool_setup():
-    t = tool_class.tool(name='Repo Manager')
+    t = tool.tool(name='Repo Manager')
     # description
     t.add_description("""
                     Used to manage Repositories, given in a list
